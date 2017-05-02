@@ -1,6 +1,6 @@
 # Terminal Tetris in Python
 
-In Linux install Python 3 and then run:
+In Linux install Python 3 and then run in terminal:
 
 python3 tetris.py
 
