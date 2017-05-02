@@ -3,8 +3,7 @@ import curses
 import datetime
 import copy
 
-MaxX, MaxY, Lines, Score, Level, Width, Height, SquareWidth = 0, 0, 0, 0, 0, 10, 20, 20
-GameOver = False
+MaxX, MaxY, Lines, Score, Level, Width, Height, GameOver = 0, 0, 0, 0, 0, 10, 20, False
 PlayField = [[0] * Width for x in range(Height)]
 Brick, NextBrick, BrickPosition, NextTick = None, None, None, None
 Bricks = [
@@ -127,7 +126,6 @@ def moveBrick(stdscr, direction):
         rBrick = rotateBrick(Brick)
         if not checkBrick(rBrick, BrickPosition):
             return
-
     paintBrick(stdscr, True)
     if direction == curses.KEY_DOWN:
         BrickPosition[0] += 1
@@ -139,7 +137,7 @@ def moveBrick(stdscr, direction):
         Brick = rotateBrick(Brick)
     paintBrick(stdscr, False)
 
-def tetris(stdscr):
+def playTetris(stdscr):
     global MaxX, MaxY, NextTick
     MaxX, MaxY = stdscr.getmaxyx()
 
@@ -167,6 +165,7 @@ def tetris(stdscr):
         stdscr.addstr(x, 0, ' ' * (Width * 2 + 4), curses.color_pair(9))
         stdscr.addstr(x, 2, ' ' * (Width * 2))
     stdscr.addstr(MaxX - 1, 0, ' ' * (Width * 2 + 4), curses.color_pair(9))
+    
     nextBrick()
     NextTick = datetime.datetime.now() + datetime.timedelta(seconds = 1)
     updateLinesAndScore(stdscr)
@@ -182,7 +181,7 @@ def tetris(stdscr):
             NextTick = datetime.datetime.now() + datetime.timedelta(seconds = 1)
     
 def main():
-    curses.wrapper(tetris)
+    curses.wrapper(playTetris)
     if GameOver:
         print("Game Over! Your score is " + str(Score))
 
