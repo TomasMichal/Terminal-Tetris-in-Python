@@ -1,3 +1,5 @@
+# Tomas Michal
+
 from random import randint
 import curses
 import datetime
