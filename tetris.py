@@ -162,6 +162,7 @@ def playTetris(stdscr):
     stdscr.addstr(MaxX - Height + 10, Width * 2 + 6, "Rotate: up arrow")
     stdscr.addstr(MaxX - Height + 11, Width * 2 + 6, "Drop: down arrow")
     stdscr.addstr(MaxX - Height + 12, Width * 2 + 6, "Exit: q")
+    stdscr.addstr(MaxX - Height + 14, Width * 2 + 6, "tomas.michal@gmail.com")
 
     for x in range(MaxX - Height - 1, MaxX):
         stdscr.addstr(x, 0, ' ' * (Width * 2 + 4), curses.color_pair(9))
